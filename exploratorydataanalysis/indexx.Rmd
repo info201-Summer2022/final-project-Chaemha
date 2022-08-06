@@ -1,0 +1,69 @@
+---
+title: "index"
+output: pdf_document
+date: '2022-08-06'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+**Introduction:**
+This project is to examine the impact for educational distrubution among states, in terms race and gender. This project will reveal the possible injustices in terms of educational opportunities. 
+
+**Summary**
+This dataset introduces data from all cities in the US compared with gender. It compares the population of people in a certain age range and educational level attainment. The datasets hope to analyze the correlation between gender and age with educational attainment. The dataset comes with two years, 2005 and 2015. We hope to be able to visualize the differences between these years. Througha anlyzing this data, we have concluded that the accesibility to education has increased. For example, in 2015, the data is more specialized and contains different fields of interest for the educational level attained, unlike 2005-2006 which contains broader educational categories and no fields of interest. 
+
+**Chart Summaries**
+This **pie chart** demonstrates the correlation between gender and educational attainment. It shows that males have a higher chance of reaching a higher level of educational attainment in the US. This is most likely due to females in society being discouraged from seeking higher level of education to focus on family, while men are encouraged to.
+
+This **bar chart** demonstrates the amount of US students who only complete elementary, middle, and high school education. From the chart, we can see that the number of students who only reached elementary school is much lower than middle abnd high school. However, there is not a large difference between those who reached middle and high school so this signifies that many students of hispanic origin are not reaching high school.
+
+This **percent bar graph** shows the level of educational attainment that corresponds with COVID-19 deaths, for both non-hispanic and hispanic origin. We can see from this graph that the majority of people who died had an educational attainment level of high school. This may or may not have been influenced with the data collected, but it indicates that people who were low-income were more susceptible to dying from COVID-19. 
+
+
+
+```{r}
+
+
+
+
+library(dplyr)
+
+geeks <- c(3807, 1998)
+labels <- c("Male", "Female")
+
+piepercent<- round(100 * geeks / sum(geeks), 1)
+
+pie(geeks, labels = piepercent,
+    main = "No High School Diploma", col = rainbow(length(geeks)))
+
+legend("topleft", c("Male", "Female"),
+       cex = 0.5, fill = rainbow(length(geeks)))
+
+# Create the data for the chart
+A <- c(599, 7716, 8770)
+
+# Plot the bar chart 
+barchart <- barplot(A, xlab = "Elementary, Middle, High School", ylab = "Students of Hispanic Origin", col = "green", main ="Level of Educational Attainment for US Students of Hispanic Origin in 1995")
+
+
+
+
+library(dplyr)
+
+colors = c("green", "orange", "brown")
+race <- c("Hispanic", "Non-Hispanic")
+education <- c("High-School", "Associate", "Bachelors")
+
+Values <- matrix(c(7553, 5348, 1007, 1520, 998, 1306),
+                 nrow = 3, ncol = 2, byrow = TRUE)
+
+barplot(Values, main = "COVID-19 Deaths by Race and Educational Attainment", names.arg = race,
+        xlab = "Race", ylab = "COVID-19 Death Rate", col = colors)
+
+legend("topleft", education, cex = 0.7, fill = colors)
+
+
+
+```
+
